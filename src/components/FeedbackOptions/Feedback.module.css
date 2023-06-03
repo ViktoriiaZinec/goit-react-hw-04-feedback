@@ -1,0 +1,36 @@
+.main_container {
+  text-align: center;
+  padding-top: 50px;
+}
+.btn_container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 50px;
+}
+.btn_vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.number {
+  font-size: 40px;
+}
+
+button {
+  padding: 5px 10px;
+  width: 150px;
+  height: 60px;
+  background-color: blue;
+  color: #ffffff;
+  font-size: 25px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+button:hover,
+button:focus {
+  background-color: rgb(58, 58, 210);
+}
