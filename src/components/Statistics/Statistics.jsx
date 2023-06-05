@@ -1,32 +1,21 @@
 import PropTypes from 'prop-types';
 import css from './Statistics.module.css';
 
-export function Statistics({ counterGood, counterNeutral, counterBad }) {
-  const countTotalFeedback = (counterGood, counterNeutral, counterBad) =>
-    counterGood + counterNeutral + counterBad;
-  const countPositiveFeedbackPercentage = (counterGood, countTotalFeedback) => {
-    if (countTotalFeedback > 0) {
-      return parseInt((counterGood / countTotalFeedback) * 100);
-    }
-    return 0;
-  };
-  if (countTotalFeedback(counterGood, counterNeutral, counterBad) > 0) {
+export function Statistics({
+  countTotalFeedback,
+  countPositiveFeedbackPercentage,
+  counters,
+}) {
+  if (countTotalFeedback > 0) {
     return (
       <ul className={css.list_style}>
-        <li>Good: {counterGood}</li>
-        <li>Neutral: {counterNeutral}</li>
-        <li>Bad: {counterBad}</li>
-        <li>
-          Total: {countTotalFeedback(counterGood, counterNeutral, counterBad)}
-        </li>
-        <li>
-          Positive:{' '}
-          {countPositiveFeedbackPercentage(
-            counterGood,
-            countTotalFeedback(counterGood, counterNeutral, counterBad)
-          )}
-          %
-        </li>
+        {counters.map(opt => (
+          <li key={opt.name}>
+            {opt.caption}: {opt.counter}
+          </li>
+        ))}
+        <li>Total: {countTotalFeedback}</li>
+        <li>Positive: {countPositiveFeedbackPercentage}%</li>
       </ul>
     );
   } else {
@@ -34,8 +23,13 @@ export function Statistics({ counterGood, counterNeutral, counterBad }) {
   }
 }
 
-Statistics.propType = {
-  counterGood: PropTypes.number.isRequired,
-  counterNeutral: PropTypes.number.isRequired,
-  counterBad: PropTypes.number.isRequired,
+Statistics.propTypes = {
+  countTotalFeedback: PropTypes.number.isRequired,
+  countPositiveFeedbackPercentage: PropTypes.number.isRequired,
+  counters: PropTypes.arrayOf(
+    PropTypes.shape({
+      caption: PropTypes.string.isRequired,
+      counter: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
