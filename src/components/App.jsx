@@ -2,6 +2,7 @@ import { Section } from './Layout/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { useState } from 'react';
 import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
 
 export const App = () => {
   const [counterGood, setCounterGood] = useState(0);
@@ -46,6 +47,7 @@ export const App = () => {
         countTotalFeedback={countTotalFeedback()}
         countPositiveFeedbackPercentage={countPositiveFeedbackPercentage()}
       />
+      <Notification countTotalFeedback={countTotalFeedback()}></Notification>
     </Section>
   );
 };

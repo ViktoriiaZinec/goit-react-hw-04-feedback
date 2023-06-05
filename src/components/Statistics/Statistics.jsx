@@ -18,8 +18,6 @@ export function Statistics({
         <li>Positive: {countPositiveFeedbackPercentage}%</li>
       </ul>
     );
-  } else {
-    return '';
   }
 }
 
